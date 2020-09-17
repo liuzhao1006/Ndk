@@ -1,0 +1,4 @@
+include ':Service'
+include ':base'
+include ':app'
+rootProject.name = "Ndk"

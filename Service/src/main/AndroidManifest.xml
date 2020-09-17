@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sydauto.service">
+
+    <application>
+
+        <!--接收守护进程发送广播，用来唤醒核心进程的广播接收器-->
+        <receiver
+            android:name="com.sydauto.receiver.DaemonsBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.sydauto.receiver.DaemonsBroadcastReceiver" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".DaemonsService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":daemons" />
+        <service
+            android:name=".SydService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote" />
+    </application>
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+</manifest>
